@@ -1,0 +1,16 @@
+{
+  "pythonProjects": {
+    "movieAPI": {
+      "title": "movieAPI",
+      "description": "A simple fastAPI with CRUD operations generating movie data on the go and authentication of registered users using jwt."
+    },
+    "musicAPI": {
+      "title": "musicAPI",
+      "description": "Backend in Django Rest for mobile music app."
+    },
+    "fastAPI": {
+      "title": "fastAPI",
+      "description": "A simple fastAPI with CRUD operations using two authentication modes (apiKey and jwt auth authentication)."
+    }
+  }
+}

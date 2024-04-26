@@ -1,0 +1,58 @@
+{
+  "navigation": {
+    "1": "Home",
+    "2": "Expertise",
+    "3": "Projects",
+    "4": "Contacts"
+  },
+  "banner": {
+    "h1": "HEY VICTOR HERE,",
+    "description": {
+      "p1": "I am a full stack developer with expertise in web development and mobile development in using react native expo.",
+      "p2": "Started out with python based projects making use of frameworks like django and flask to build full stack applications then gradually added react to the mix.",
+      "p3": "Over the years I have built up projects for my portfolio boosting my knowledge while stretching it futher by trying out mobile projects in react native expo."
+    },
+    "connectButton": "Get in touch"
+  },
+
+  "expertise": {
+    "title": "EXPERTISE",
+    "WebApp": {
+      "title": "WebApp"
+    },
+    "Website": {
+      "title": "Website"
+    },
+    "Languages": {
+      "title": "Languages"
+    }
+  },
+  "projects": {
+    "title": "PROJECTS",
+    "p": "Most Projects with backends are hosted on servers which idles out if requests aren't made regularly, please be patient while it reboots.",
+    "projectNavButtons": {
+      "1": "Web Apps",
+      "2": "Mobile Apps",
+      "3": "Websites",
+      "4": "Python Projects",
+      "5": "In Progress"
+    },
+    "projectExperience": "Skills Used",
+    "projectDescription": "Description",
+    "projectSiteButton": "Go to site"
+  },
+
+  "extra": {
+    "extraNext": "Next Player is",
+    "extraWinner": "Winner is",
+    "extraGameOver": "Game Over",
+    "extraPlayerXButton": "Player X",
+    "extraPlayerOButton": "Player O",
+    "extraLevel1Button": "Level 1",
+    "extraLevel2Button": "Level 2"
+  },
+
+  "contacts": {
+    "title": "CONTACTS"
+  }
+}

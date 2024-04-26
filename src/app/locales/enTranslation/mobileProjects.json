@@ -1,0 +1,12 @@
+{
+  "mobileProjectsData": {
+    "mobile-app-one": {
+      "title": "Mobile App",
+      "description": "Mobile App for playing tic-tac-toe, supports dual play with computer or human."
+    },
+    "mobile-app-two": {
+      "title": "Mobile App",
+      "description": "Mobile App for streaming music. It is an extensions of my previous work on the web platform with extra features."
+    }
+  }
+}

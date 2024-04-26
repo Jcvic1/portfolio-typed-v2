@@ -1,0 +1,18 @@
+{
+
+  "appProjectsData": {
+    "web-app-one": {
+      "title": "Web App",
+      "description": "Web App for keeping tab of patients and physicians in a clinic, including planning visits for patients. It runs on python flask,using a database on postgresql for storing data."
+    },
+
+    "web-app-two": {
+      "title": "Web App",
+      "description": "Web App for streaming music from Yandex.Music that allows multiple users to share tracks and listen to each others music. It is strictly django based app with no front end framework which resulted in the complex use of django templating and htmx to achieve the looks. It uses an external database on postgresql for storing data and aws bucket s3 for storing media like profile pictures."
+    },
+    "web-app-three": {
+      "title": "Web App",
+      "description": "Web App for streaming movies, frontend is built on react while backend is built on fastAPI which generates movie data on the fly and also authenticates registered users, allowing them to store and retrieve personalized movie data."
+    }
+  }
+}
