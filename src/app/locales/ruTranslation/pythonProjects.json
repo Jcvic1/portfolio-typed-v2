@@ -11,6 +11,10 @@
     "fastAPI": {
       "title": "fastAPI",
       "description": "Простой fastAPI с операциями CRUD, использующий два режима аутентификации (apiKey и jwt auth)."
+    },
+    "telegramBot": {
+      "title": "telegramBot",
+      "description": "Простой telegram-бот, использующий aiogram на python искать, играть и загрузить музыки с текстами песен."
     }
   }
 }

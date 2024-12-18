@@ -48,8 +48,11 @@
     "extraGameOver": "Игра окончена",
     "extraPlayerXButton": "Игрок X",
     "extraPlayerOButton": "Игрок O",
-    "extraLevel1Button": "Уровень 1",
-    "extraLevel2Button": "Уровень 2"
+    "extraBoard3Button": "Доска 3X",
+    "extraBoard5Button": "Доска 5X",
+    "extraEasyButton": "Низкий",
+    "extraMediumButton": "Средний",
+    "extraHardButton": "Высокий"
   },
 
   "contacts": {

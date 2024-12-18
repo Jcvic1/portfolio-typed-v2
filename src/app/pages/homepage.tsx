@@ -9,18 +9,13 @@ import Player from "../components/Games";
 import Footer from "../components/Footer";
 import useTheme from "../hooks/useTheme";
 
-
-
 const Homepage = () => {
   const { theme } = useTheme();
   const { t } = useTranslation();
 
-  useEffect(() => {
-    document.body.setAttribute("data-bs-theme", theme);
-  }, [theme]);
-
+  document.body.setAttribute("data-bs-theme", theme);
   return (
-    <>
+    <div id="body" data-bs-theme={theme}>
       <header className="sticky-top bg-secondary">
         <Navbar t={t} />
       </header>
@@ -30,10 +25,8 @@ const Homepage = () => {
       <Player t={t} />
       <Contacts t={t} />
       <Footer />
-    </>
+    </div>
   );
 };
 
 export default Homepage;
-
-

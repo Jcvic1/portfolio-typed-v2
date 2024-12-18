@@ -250,6 +250,10 @@
 
 
 .button-yellow{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 33px;
   height: 33px;
   border-radius: 50%;
@@ -257,6 +261,10 @@
 }
 
 .button-green{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 33px;
   height: 33px;
   border-radius: 50%;

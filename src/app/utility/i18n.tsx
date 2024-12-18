@@ -33,9 +33,12 @@ const resources = {
   },
 };
 
+const browserLang = navigator.language.slice(0, 2);
+const supportedLangs = ["en", "ru"];
+
 i18n.use(initReactI18next).init({
   resources,
-  lng: "en",
+  lng: supportedLangs.includes(browserLang) ? browserLang : "en",
   interpolation: {
     escapeValue: false,
   },

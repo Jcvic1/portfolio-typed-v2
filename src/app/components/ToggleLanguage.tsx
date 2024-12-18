@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const ToggleLanguage = () => {
-  const [lang, setLang] = useState("en");
   const { i18n } = useTranslation();
+  const [lang, setLang] = useState(i18n.language);
 
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
@@ -18,7 +18,7 @@ const ToggleLanguage = () => {
         aria-expanded="false"
         style={{ color: "#adb5bd" }}
       >
-        <span>{lang}{" "}</span>
+        <span>{lang} </span>
         <i className="bi bi-globe"></i>
       </button>
 

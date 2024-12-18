@@ -1,7 +1,12 @@
-import React, { useState, useEffect, useCallback, FC, MouseEventHandler } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  FC,
+  MouseEventHandler,
+} from "react";
 import { useMediaQuery } from "react-responsive";
 import { TFunction } from "i18next";
-
 
 interface CircleProps {
   value: string;
@@ -27,13 +32,19 @@ const Circle: FC<CircleProps> = ({ value, winCircleColor, handleClick }) => {
 
 interface BoardProps {
   value: string[];
-  currentLevel: string;
+  currentBoard: string;
   winCircle: number[];
   header: string;
   onHandleClick: Function;
 }
 
-const Board: FC<BoardProps> = ({ value, currentLevel, winCircle, header, onHandleClick }) => {
+const Board: FC<BoardProps> = ({
+  value,
+  currentBoard,
+  winCircle,
+  header,
+  onHandleClick,
+}) => {
   const winCircleColor = Array(9).fill("");
   if (winCircle) {
     winCircle.map((indices: number) => (winCircleColor[indices] = "green"));
@@ -41,7 +52,7 @@ const Board: FC<BoardProps> = ({ value, currentLevel, winCircle, header, onHandl
 
   return (
     <>
-      {(header.includes("Winner") || header.includes("Победитель")) ? (
+      {header.includes("Winner") || header.includes("Победитель") ? (
         <h2 className="text-center">
           {header} <i className="bi bi-trophy text-warning"></i>
         </h2>
@@ -51,265 +62,39 @@ const Board: FC<BoardProps> = ({ value, currentLevel, winCircle, header, onHandl
 
       <div className="container">
         <div className="board">
-          {currentLevel === "Level 1" ? (
+          {currentBoard === "Board 3" ? (
             <div>
-              <div className="circle-set">
-                <div className="circle">
-                  <Circle
-                    value={value[0]}
-                    winCircleColor={winCircleColor[0]}
-                    handleClick={() => onHandleClick(0)}
-                  />
+              {Array.from({ length: 3 }, (_, i) => (
+                <div key={`set${i}`} className="circle-set">
+                  {Array.from({ length: 3 }, (_, j) => (
+                    <div key={j} className="circle">
+                      <Circle
+                        key={i * 3 + j}
+                        value={value[i * 3 + j]}
+                        winCircleColor={winCircleColor[i * 3 + j]}
+                        handleClick={() => onHandleClick(i * 3 + j)}
+                      />
+                    </div>
+                  ))}
                 </div>
-                <div className="circle">
-                  <Circle
-                    value={value[1]}
-                    winCircleColor={winCircleColor[1]}
-                    handleClick={() => onHandleClick(1)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[2]}
-                    winCircleColor={winCircleColor[2]}
-                    handleClick={() => onHandleClick(2)}
-                  />
-                </div>
-              </div>
-              <div className="circle-set">
-                <div className="circle">
-                  <Circle
-                    value={value[3]}
-                    winCircleColor={winCircleColor[3]}
-                    handleClick={() => onHandleClick(3)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[4]}
-                    winCircleColor={winCircleColor[4]}
-                    handleClick={() => onHandleClick(4)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[5]}
-                    winCircleColor={winCircleColor[5]}
-                    handleClick={() => onHandleClick(5)}
-                  />
-                </div>
-              </div>
-              <div className="circle-set">
-                <div className="circle">
-                  <Circle
-                    value={value[6]}
-                    winCircleColor={winCircleColor[6]}
-                    handleClick={() => onHandleClick(6)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[7]}
-                    winCircleColor={winCircleColor[7]}
-                    handleClick={() => onHandleClick(7)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[8]}
-                    winCircleColor={winCircleColor[8]}
-                    handleClick={() => onHandleClick(8)}
-                  />
-                </div>
-              </div>
+              ))}
             </div>
           ) : (
             <div>
-              <div className="circle-set">
-                <div className="circle">
-                  <Circle
-                    value={value[0]}
-                    winCircleColor={winCircleColor[0]}
-                    handleClick={() => onHandleClick(0)}
-                  />
+              {Array.from({ length: 5 }, (_, i) => (
+                <div key={`set${i}`} className="circle-set">
+                  {Array.from({ length: 5 }, (_, j) => (
+                    <div key={j} className="circle">
+                      <Circle
+                        key={i * 5 + j}
+                        value={value[i * 5 + j]}
+                        winCircleColor={winCircleColor[i * 5 + j]}
+                        handleClick={() => onHandleClick(i * 5 + j)}
+                      />
+                    </div>
+                  ))}
                 </div>
-                <div className="circle">
-                  <Circle
-                    value={value[1]}
-                    winCircleColor={winCircleColor[1]}
-                    handleClick={() => onHandleClick(1)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[2]}
-                    winCircleColor={winCircleColor[2]}
-                    handleClick={() => onHandleClick(2)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[3]}
-                    winCircleColor={winCircleColor[3]}
-                    handleClick={() => onHandleClick(3)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[4]}
-                    winCircleColor={winCircleColor[4]}
-                    handleClick={() => onHandleClick(4)}
-                  />
-                </div>
-              </div>
-              <div className="circle-set">
-                <div className="circle">
-                  <Circle
-                    value={value[5]}
-                    winCircleColor={winCircleColor[5]}
-                    handleClick={() => onHandleClick(5)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[6]}
-                    winCircleColor={winCircleColor[6]}
-                    handleClick={() => onHandleClick(6)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[7]}
-                    winCircleColor={winCircleColor[7]}
-                    handleClick={() => onHandleClick(7)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[8]}
-                    winCircleColor={winCircleColor[8]}
-                    handleClick={() => onHandleClick(8)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[9]}
-                    winCircleColor={winCircleColor[9]}
-                    handleClick={() => onHandleClick(9)}
-                  />
-                </div>
-              </div>
-              <div className="circle-set">
-                <div className="circle">
-                  <Circle
-                    value={value[10]}
-                    winCircleColor={winCircleColor[10]}
-                    handleClick={() => onHandleClick(10)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[11]}
-                    winCircleColor={winCircleColor[11]}
-                    handleClick={() => onHandleClick(11)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[12]}
-                    winCircleColor={winCircleColor[12]}
-                    handleClick={() => onHandleClick(12)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[13]}
-                    winCircleColor={winCircleColor[13]}
-                    handleClick={() => onHandleClick(13)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[14]}
-                    winCircleColor={winCircleColor[14]}
-                    handleClick={() => onHandleClick(14)}
-                  />
-                </div>
-              </div>
-              <div className="circle-set">
-                <div className="circle">
-                  <Circle
-                    value={value[15]}
-                    winCircleColor={winCircleColor[15]}
-                    handleClick={() => onHandleClick(15)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[16]}
-                    winCircleColor={winCircleColor[16]}
-                    handleClick={() => onHandleClick(16)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[17]}
-                    winCircleColor={winCircleColor[17]}
-                    handleClick={() => onHandleClick(17)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[18]}
-                    winCircleColor={winCircleColor[18]}
-                    handleClick={() => onHandleClick(18)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[19]}
-                    winCircleColor={winCircleColor[19]}
-                    handleClick={() => onHandleClick(19)}
-                  />
-                </div>
-              </div>
-              <div className="circle-set">
-                <div className="circle">
-                  <Circle
-                    value={value[20]}
-                    winCircleColor={winCircleColor[20]}
-                    handleClick={() => onHandleClick(20)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[21]}
-                    winCircleColor={winCircleColor[21]}
-                    handleClick={() => onHandleClick(21)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[22]}
-                    winCircleColor={winCircleColor[22]}
-                    handleClick={() => onHandleClick(22)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[23]}
-                    winCircleColor={winCircleColor[23]}
-                    handleClick={() => onHandleClick(23)}
-                  />
-                </div>
-                <div className="circle">
-                  <Circle
-                    value={value[24]}
-                    winCircleColor={winCircleColor[24]}
-                    handleClick={() => onHandleClick(24)}
-                  />
-                </div>
-              </div>
+              ))}
             </div>
           )}
         </div>
@@ -319,15 +104,22 @@ const Board: FC<BoardProps> = ({ value, currentLevel, winCircle, header, onHandl
 };
 
 interface GameProps {
-  currentLevel: string;
+  currentBoard: string;
+  currentLevel: number;
   t: TFunction;
   updateReturn: Function;
   updateScore: Function;
 }
 
-const Game: FC<GameProps> = ({ currentLevel, t, updateReturn, updateScore }) => {
+const Game: FC<GameProps> = ({
+  currentBoard,
+  currentLevel,
+  t,
+  updateReturn,
+  updateScore,
+}) => {
   const [value, setValue] = useState<string[][]>(
-    currentLevel === "Level 1" ? [Array(9).fill(null)] : [Array(25).fill(null)]
+    currentBoard === "Board 3" ? [Array(9).fill(null)] : [Array(25).fill(null)]
   );
   const [xNext, setXNext] = useState(true);
   const [lastXNext, setlastXNext] = useState(true);
@@ -339,17 +131,17 @@ const Game: FC<GameProps> = ({ currentLevel, t, updateReturn, updateScore }) => 
   const [isComputerPlaying, setIsComputerPlaying] = useState(false);
   const [lastComputerNext, setLastComputerNext] = useState(false);
   const [totalReturn, setTotalReturn] = useState(
-    currentLevel === "Level 1" ? 1 : 3
+    currentBoard === "Board 3" ? 1 : 3
   );
 
   const currentValue: string[] = value[value.length - 1];
 
   const computeGame = useCallback(() => {
-    const playIndex = getFreeCells(currentValue, currentLevel);
+    const playIndex = getFreeCells(currentValue, currentBoard, currentLevel);
 
     if (
-      won(currentValue, currentLevel) ||
-      gameOver(currentValue, currentLevel)
+      won(currentValue, currentBoard) ||
+      gameOver(currentValue, currentBoard)
     ) {
       return;
     }
@@ -360,7 +152,7 @@ const Game: FC<GameProps> = ({ currentLevel, t, updateReturn, updateScore }) => 
     setXNext(!xNext);
     setValue([...value, newValueSet]);
     setIsComputerPlaying(false);
-  }, [currentValue, currentLevel, xNext, value, setIsComputerPlaying]);
+  }, [currentValue, currentBoard, xNext, value, setIsComputerPlaying]);
 
   useEffect(() => {
     if (gameStart) {
@@ -372,12 +164,11 @@ const Game: FC<GameProps> = ({ currentLevel, t, updateReturn, updateScore }) => 
       };
     }
   }, [isComputerNext, gameStart]);
-  
 
   useEffect(() => {
     handleReset();
-    setTotalReturn(currentLevel === "Level 1" ? 1 : 3);
-  }, [currentLevel]);
+    setTotalReturn(currentBoard === "Board 3" ? 1 : 3);
+  }, [currentBoard, currentLevel]);
 
   const handleReturn = (value: string[][]) => {
     if (totalReturn === 0) return;
@@ -392,13 +183,13 @@ const Game: FC<GameProps> = ({ currentLevel, t, updateReturn, updateScore }) => 
     setlastXNext(!lastXNext);
 
     setValue(
-      currentLevel === "Level 1"
+      currentBoard === "Board 3"
         ? [Array(9).fill(null)]
         : [Array(25).fill(null)]
     );
 
-    setTotalReturn(currentLevel === "Level 1" ? 1 : 3);
-    updateReturn(currentLevel === "Level 1" ? 1 : 3);
+    setTotalReturn(currentBoard === "Board 3" ? 1 : 3);
+    updateReturn(currentBoard === "Board 3" ? 1 : 3);
 
     lastComputerNext ? setGameStart(false) : setGameStart(true);
 
@@ -410,7 +201,7 @@ const Game: FC<GameProps> = ({ currentLevel, t, updateReturn, updateScore }) => 
   };
 
   const handleClearGame = () => {
-    updateScore("Both")
+    updateScore("Both");
     lastXNext ? setXNext(false) : setXNext(true);
     setlastXNext(!lastXNext);
     lastComputerNext ? setGameStart(false) : setGameStart(true);
@@ -421,19 +212,19 @@ const Game: FC<GameProps> = ({ currentLevel, t, updateReturn, updateScore }) => 
     setPlayerX("X");
     setPlayerO("O");
     setValue(
-      currentLevel === "Level 1"
+      currentBoard === "Board 3"
         ? [Array(9).fill(null)]
         : [Array(25).fill(null)]
     );
-    setTotalReturn(currentLevel === "Level 1" ? 1 : 3);
+    setTotalReturn(currentBoard === "Board 3" ? 1 : 3);
   };
 
   const onHandleClick = (i: number) => {
     if (
       isComputerPlaying ||
       currentValue[i] ||
-      won(currentValue, currentLevel) ||
-      gameOver(currentValue, currentLevel)
+      won(currentValue, currentBoard) ||
+      gameOver(currentValue, currentBoard)
     ) {
       return;
     }
@@ -454,7 +245,7 @@ const Game: FC<GameProps> = ({ currentLevel, t, updateReturn, updateScore }) => 
   };
 
   useEffect(() => {
-    const winResult: any = won(currentValue, currentLevel);
+    const winResult: any = won(currentValue, currentBoard);
     if (winResult) {
       updateScore(winResult[0] === "X" ? "X" : "O");
     }
@@ -463,8 +254,8 @@ const Game: FC<GameProps> = ({ currentLevel, t, updateReturn, updateScore }) => 
   let winResult: any;
   let gameOverResult;
 
-  winResult = won(currentValue, currentLevel);
-  gameOverResult = gameOver(currentValue, currentLevel);
+  winResult = won(currentValue, currentBoard);
+  gameOverResult = gameOver(currentValue, currentBoard);
 
   let winner;
   let winCircle;
@@ -490,7 +281,7 @@ const Game: FC<GameProps> = ({ currentLevel, t, updateReturn, updateScore }) => 
       <Board
         value={currentValue}
         winCircle={winCircle}
-        currentLevel={currentLevel}
+        currentBoard={currentBoard}
         header={header}
         onHandleClick={(i: number) => onHandleClick(i)}
       />
@@ -557,21 +348,30 @@ const Game: FC<GameProps> = ({ currentLevel, t, updateReturn, updateScore }) => 
   );
 };
 
-interface PlayerProps{
+interface PlayerProps {
   t: TFunction;
 }
 
 const Player: FC<PlayerProps> = ({ t }) => {
-  const [currentLevel, setcurrentLevel] = useState<string>("Level 1");
+  const [currentBoard, setcurrentBoard] = useState<string>("Board 3");
+  const [currentLevel, setcurrentLevel] = useState<number>(2);
   const [XScore, setXcore] = useState(0);
   const [OScore, setOcore] = useState(0);
-  const [number, setNumber] = useState<number>(currentLevel === "Level 1" ? 1 : 3);
+  const [number, setNumber] = useState<number>(
+    currentBoard === "Board 3" ? 1 : 3
+  );
 
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
-  const handleCurrentLevel = (level: string) => {
+  const handleCurrentBoard = (board: string) => {
+    setcurrentBoard(board);
+    setNumber(board === "Board 3" ? 1 : 3);
+  };
+
+  const handleCurrentLevel = (level: number) => {
     setcurrentLevel(level);
-    setNumber(level === "Level 1" ? 1 : 3);
+    setXcore(0);
+    setOcore(0);
   };
 
   const updateReturn = (n: number) => {
@@ -602,37 +402,83 @@ const Player: FC<PlayerProps> = ({ t }) => {
               <i className="bi bi-arrow-counterclockwise fs-3 text-warning"></i>
             </span>
           </div>
-          <div className="dropdown mb-5">
-            <button
-              className="btn btn-outline-secondary dropdown-toggle px-2 py-0 rounded-pill"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              {currentLevel.includes("1")
-                ? t("common:extra.extraLevel1Button")
-                : t("common:extra.extraLevel2Button")}
-            </button>
-            <ul className="dropdown-menu">
-              <li>
-                <button
-                  onClick={() => handleCurrentLevel("Level 1")}
-                  className="dropdown-item"
-                  type="button"
-                >
-                  {t("common:extra.extraLevel1Button")}
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleCurrentLevel("Level 2")}
-                  className="dropdown-item"
-                  type="button"
-                >
-                  {t("common:extra.extraLevel2Button")}
-                </button>
-              </li>
-            </ul>
+          <div className="d-flex">
+            <div className="dropdown mb-5 me-2">
+              <button
+                className="btn btn-outline-secondary dropdown-toggle px-2 py-0 rounded-pill"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {currentLevel === 1
+                  ? t("common:extra.extraEasyButton")
+                  : currentLevel === 2
+                  ? t("common:extra.extraMediumButton")
+                  : t("common:extra.extraHardButton")}
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <button
+                    onClick={() => handleCurrentLevel(1)}
+                    className="dropdown-item"
+                    type="button"
+                  >
+                    {t("common:extra.extraEasyButton")}
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleCurrentLevel(2)}
+                    className="dropdown-item"
+                    type="button"
+                  >
+                    {t("common:extra.extraMediumButton")}
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleCurrentLevel(3)}
+                    className="dropdown-item"
+                    type="button"
+                  >
+                    {t("common:extra.extraHardButton")}
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <div className="dropdown mb-5">
+              <button
+                className="btn btn-outline-secondary dropdown-toggle px-2 py-0 rounded-pill"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {currentBoard.includes("3")
+                  ? t("common:extra.extraBoard3Button")
+                  : t("common:extra.extraBoard5Button")}
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <button
+                    onClick={() => handleCurrentBoard("Board 3")}
+                    className="dropdown-item"
+                    type="button"
+                  >
+                    {t("common:extra.extraBoard3Button")}
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleCurrentBoard("Board 5")}
+                    className="dropdown-item"
+                    type="button"
+                  >
+                    {t("common:extra.extraBoard5Button")}
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -646,6 +492,7 @@ const Player: FC<PlayerProps> = ({ t }) => {
 
         <div>
           <Game
+            currentBoard={currentBoard}
             currentLevel={currentLevel}
             t={t}
             updateReturn={updateReturn}
@@ -657,8 +504,8 @@ const Player: FC<PlayerProps> = ({ t }) => {
   );
 };
 
-const won = (value: string[], currentLevel: string, symbol: string = "") => {
-  if (currentLevel === "Level 1") {
+const won = (value: string[], currentBoard: string, symbol: string = "") => {
+  if (currentBoard === "Board 3") {
     const winOutcome = [
       [0, 1, 2],
       [3, 4, 5],
@@ -725,8 +572,8 @@ const won = (value: string[], currentLevel: string, symbol: string = "") => {
   }
 };
 
-const gameOver = (value: string[], currentLevel: string) => {
-  if (currentLevel === "Level 1") {
+const gameOver = (value: string[], currentBoard: string) => {
+  if (currentBoard === "Board 3") {
     const winOutcome = [
       [0, 1, 2],
       [3, 4, 5],
@@ -787,61 +634,77 @@ const gameOver = (value: string[], currentLevel: string) => {
   }
 };
 
-const getFreeCells = (value: string[], currentLevel: string) => {
+const getFreeCells = (
+  value: string[],
+  currentBoard: string,
+  currentLevel: number
+) => {
   const opponent = "X";
 
-  const winningMove = findWinningMove(value, currentLevel, "O");
-  if (winningMove !== -1) {
-    return winningMove;
-  }
-
-  const blockingMove = findWinningMove(value, currentLevel, opponent);
-  if (blockingMove !== -1) {
-    return blockingMove;
-  }
-
-  const center = Math.floor(value.length / 2);
-  if (value[center] === null) {
-    return center;
-  }
-
-  if (currentLevel === "Level 1") {
-    const corners = [0, 2, 6, 8];
-    const availableCorners = corners.filter((corner) => value[corner] === null);
-    if (availableCorners.length > 0) {
-      return getRandomMove(availableCorners);
+  if (currentLevel === 3) {
+    const winningMove = findWinningMove(value, currentBoard, "O");
+    if (winningMove !== -1) {
+      return winningMove;
     }
-  } else if (currentLevel === "Level 2") {
-    const corners = [0, 4, 20, 24];
-    const availableCorners = corners.filter((corner) => value[corner] === null);
-    if (availableCorners.length > 0) {
-      return getRandomMove(availableCorners);
+
+    const blockingMove = findWinningMove(value, currentBoard, opponent);
+    if (blockingMove !== -1) {
+      return blockingMove;
     }
   }
 
-  if (currentLevel === "Level 1") {
-    const sides = [1, 3, 5, 7];
-    const availableSides = sides.filter((side) => value[side] === null);
-    if (availableSides.length > 0) {
-      return getRandomMove(availableSides);
+  if (currentLevel > 1) {
+    const center = Math.floor(value.length / 2);
+    if (value[center] === null) {
+      return center;
     }
-  } else if (currentLevel === "Level 2") {
-    const sides = [1, 9, 10, 14, 15, 19, 21, 22, 23];
-    const availableSides = sides.filter((side) => value[side] === null);
-    if (availableSides.length > 0) {
-      return getRandomMove(availableSides);
+
+    if (currentBoard === "Board 3") {
+      const corners = [0, 2, 6, 8];
+      const availableCorners = corners.filter(
+        (corner) => value[corner] === null
+      );
+      if (availableCorners.length > 0) {
+        return getRandomMove(availableCorners);
+      }
+    } else if (currentBoard === "Board 5") {
+      const corners = [0, 4, 20, 24];
+      const availableCorners = corners.filter(
+        (corner) => value[corner] === null
+      );
+      if (availableCorners.length > 0) {
+        return getRandomMove(availableCorners);
+      }
+    }
+
+    if (currentBoard === "Board 3") {
+      const sides = [1, 3, 5, 7];
+      const availableSides = sides.filter((side) => value[side] === null);
+      if (availableSides.length > 0) {
+        return getRandomMove(availableSides);
+      }
+    } else if (currentBoard === "Board 5") {
+      const sides = [1, 9, 10, 14, 15, 19, 21, 22, 23];
+      const availableSides = sides.filter((side) => value[side] === null);
+      if (availableSides.length > 0) {
+        return getRandomMove(availableSides);
+      }
     }
   }
 
   return getRandomMove(getEmptyCells(value));
 };
 
-const findWinningMove = (value: string[], currentLevel: string, symbol: string) => {
+const findWinningMove = (
+  value: string[],
+  currentBoard: string,
+  symbol: string
+) => {
   for (let i = 0; i < value.length; i++) {
     if (value[i] === null) {
       const tempBoard = [...value];
       tempBoard[i] = symbol;
-      if (won(tempBoard, currentLevel, symbol)) {
+      if (won(tempBoard, currentBoard, symbol)) {
         return i;
       }
     }
@@ -864,4 +727,3 @@ const getRandomMove = (moves: number[]) => {
 };
 
 export default Player;
-

@@ -48,8 +48,11 @@
     "extraGameOver": "Game Over",
     "extraPlayerXButton": "Player X",
     "extraPlayerOButton": "Player O",
-    "extraLevel1Button": "Level 1",
-    "extraLevel2Button": "Level 2"
+    "extraBoard3Button": "Board 3X",
+    "extraBoard5Button": "Board 5X",
+    "extraEasyButton": "Easy",
+    "extraMediumButton": "Medium",
+    "extraHardButton": "Hard"
   },
 
   "contacts": {
