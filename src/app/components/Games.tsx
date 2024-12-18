@@ -288,7 +288,7 @@ const Game: FC<GameProps> = ({
       <div className="w-100 d-flex justify-content-center">
         <button
           className={`btn btn-outline-warning rounded-pill mt-5 w-25 ${
-            (totalReturn === 0 || value.length < 3) && "disabled"
+            (totalReturn === 0 || value.length < 3 || gameOverResult === "Game Over") && "disabled"
           }`}
           onClick={() => handleReturn(value)}
         >
